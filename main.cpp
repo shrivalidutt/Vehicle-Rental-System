@@ -160,35 +160,35 @@ public:
         cout << "--------------------\n";
     }
 
- // Save available vehicles to CSV
+// Save available vehicles to CSV
 void save_vehicles_to_csv() {
     ofstream file("vehicles.csv");
     for (auto& vehicle : vehicles) {
         Bicycle* bicycle = dynamic_cast<Bicycle*>(vehicle);
         if (bicycle) {
-            file << bicycle->get_make() << "," << bicycle->get_model() << "," 
-                 << bicycle->get_year() << "," << bicycle->get_rental_rate() << ", Bicycle ," 
+            file << bicycle->get_make() << " " << bicycle->get_model() << " " 
+                 << bicycle->get_year() << " " << bicycle->get_rental_rate() << " Bicycle " 
                  << bicycle->get_type() << endl;
         }
         
         Bike* bike = dynamic_cast<Bike*>(vehicle);
         if (bike) {
-            file << bike->get_make() << "," << bike->get_model() << "," 
-                 << bike->get_year() << "," << bike->get_rental_rate() << ", Bike ," 
+            file << bike->get_make() << " " << bike->get_model() << " " 
+                 << bike->get_year() << " " << bike->get_rental_rate() << " Bike " 
                  << bike->get_type() << endl;
         }
 
         Car* car = dynamic_cast<Car*>(vehicle);
         if (car) {
-            file << car->get_make() << "," << car->get_model() << "," 
-                 << car->get_year() << "," << car->get_rental_rate() << ", Car ," 
+            file << car->get_make() << " " << car->get_model() << " " 
+                 << car->get_year() << " " << car->get_rental_rate() << " Car " 
                  << car->get_num_doors() << endl;
         }
 
         Truck* truck = dynamic_cast<Truck*>(vehicle);
         if (truck) {
-            file << truck->get_make() << "," << truck->get_model() << "," 
-                 << truck->get_year() << "," << truck->get_rental_rate() << ", Truck ," 
+            file << truck->get_make() << " " << truck->get_model() << " " 
+                 << truck->get_year() << " " << truck->get_rental_rate() << " Truck " 
                  << truck->get_cargo_capacity() << endl;
         }
     }
@@ -204,35 +204,35 @@ void save_customers_to_csv() {
     file.close();
 }
 
-   // Save rented vehicles to CSV
+// used to maintain a record of all rented vehicles
 void save_rented_vehicles_to_csv(vector<Vehicle*> rented_vehicles) {
     ofstream file("rented_vehicles.csv");
     for (auto& vehicle : rented_vehicles) {
         Bicycle* bicycle = dynamic_cast<Bicycle*>(vehicle);
         if (bicycle) {
-            file << bicycle->get_make() << "," << bicycle->get_model() << ","
-                 << bicycle->get_year() << "," << bicycle->get_rental_rate() << ",Bicycle,"
+            file << bicycle->get_make() << " " << bicycle->get_model() << " "
+                 << bicycle->get_year() << " " << bicycle->get_rental_rate() << " Bicycle "
                  << bicycle->get_type() << endl;
         }
         
         Bike* bike = dynamic_cast<Bike*>(vehicle);
         if (bike) {
-            file << bike->get_make() << "," << bike->get_model() << ","
-                 << bike->get_year() << "," << bike->get_rental_rate() << ",Bike,"
+            file << bike->get_make() << " " << bike->get_model() << " "
+                 << bike->get_year() << " " << bike->get_rental_rate() << " Bike "
                  << bike->get_type() << endl;
         }
 
         Car* car = dynamic_cast<Car*>(vehicle);
         if (car) {
-            file << car->get_make() << "," << car->get_model() << ","
-                 << car->get_year() << "," << car->get_rental_rate() << ",Car,"
+            file << car->get_make() << " " << car->get_model() << " "
+                 << car->get_year() << " " << car->get_rental_rate() << " Car "
                  << car->get_num_doors() << endl;
         }
 
         Truck* truck = dynamic_cast<Truck*>(vehicle);
         if (truck) {
-            file << truck->get_make() << "," << truck->get_model() << ","
-                 << truck->get_year() << "," << truck->get_rental_rate() << ",Truck,"
+            file << truck->get_make() << " " << truck->get_model() << " "
+                 << truck->get_year() << " " << truck->get_rental_rate() << " Truck "
                  << truck->get_cargo_capacity() << endl;
         }
     }
@@ -285,17 +285,7 @@ void load_customers_from_csv() {
     file.close();
 }
 
-
-    // Display all rental records (for admin)
-    void display_rental_records() {
-        cout << "\n--- Rental Records ---\n";
-        for (auto& record : rental_records) {
-            cout << "Customer: " << record.customer_name << " | Vehicle: " << record.vehicle_info << " | Date: " << record.rental_date << " | Period: " << record.rental_period << " days | Total Cost: " << record.total_cost << " rp" << endl;
-        }
-        cout << "----------------------\n";
-    }
-
-// Save a single rented vehicle to CSV (for persistence)
+// Saves the details of one vehicle that has just been rented
 void save_vehicle_to_rented_csv(Vehicle* rented_vehicle, int customer_license) {
     ofstream file("rented_vehicles.csv", ios::app);
     string vehicle_type;
@@ -303,33 +293,33 @@ void save_vehicle_to_rented_csv(Vehicle* rented_vehicle, int customer_license) {
     Bicycle* bicycle = dynamic_cast<Bicycle*>(rented_vehicle);
     if (bicycle) {
         vehicle_type = "Bicycle";
-        file << bicycle->get_make() << "," << bicycle->get_model() << ","
-             << bicycle->get_year() << "," << bicycle->get_rental_rate() << "," 
-             << vehicle_type << "," << bicycle->get_type() << "," << customer_license << endl; 
+        file << bicycle->get_make() << " " << bicycle->get_model() << " "
+             << bicycle->get_year() << " " << bicycle->get_rental_rate() << " " 
+             << vehicle_type << " " << bicycle->get_type() << " " << customer_license << endl; 
     }
     
     Bike* bike = dynamic_cast<Bike*>(rented_vehicle);
     if (bike) {
         vehicle_type = "Bike";
-        file << bike->get_make() << "," << bike->get_model() << ","
-             << bike->get_year() << "," << bike->get_rental_rate() << "," 
-             << vehicle_type << "," << bike->get_type() << "," << customer_license << endl; 
+        file << bike->get_make() << " " << bike->get_model() << " "
+             << bike->get_year() << " " << bike->get_rental_rate() << " " 
+             << vehicle_type << " " << bike->get_type() << " " << customer_license << endl; 
     }
 
     Car* car = dynamic_cast<Car*>(rented_vehicle);
     if (car) {
         vehicle_type = "Car";
-        file << car->get_make() << "," << car->get_model() << ","
-             << car->get_year() << "," << car->get_rental_rate() << "," 
-             << vehicle_type << "," << car->get_num_doors() << "," << customer_license << endl; 
+        file << car->get_make() << " " << car->get_model() << " "
+             << car->get_year() << " " << car->get_rental_rate() << " " 
+             << vehicle_type << " " << car->get_num_doors() << " " << customer_license << endl; 
     }
 
     Truck* truck = dynamic_cast<Truck*>(rented_vehicle);
     if (truck) {
         vehicle_type = "Truck";
-        file << truck->get_make() << "," << truck->get_model() << ","
-             << truck->get_year() << "," << truck->get_rental_rate() << "," 
-             << vehicle_type << "," << truck->get_cargo_capacity() << "," << customer_license << endl; 
+        file << truck->get_make() << " " << truck->get_model() << " "
+             << truck->get_year() << " " << truck->get_rental_rate() << " " 
+             << vehicle_type << " " << truck->get_cargo_capacity() << " " << customer_license << endl; 
     }
     file.close();
 }
@@ -389,6 +379,15 @@ void rent_vehicle(string customer_name, int rental_period) {
         cout << "Invalid vehicle selection!" << endl;
     }
 }
+
+// Display all rental records (for admin)
+    void display_rental_records() {
+        cout << "\n--- Rental Records ---\n";
+        for (auto& record : rental_records) {
+            cout << "Customer: " << record.customer_name << " | Vehicle: " << record.vehicle_info << " | Date: " << record.rental_date << " | Period: " << record.rental_period << " days | Total Cost: " << record.total_cost << " rp" << endl;
+        }
+        cout << "----------------------\n";
+    }
 
 // Return vehicle logic
 void return_vehicle(string customer_name) {
